@@ -22,12 +22,13 @@ runs:
     - name: Install Flutter SDK Stable Channel
       if: ${{ inputs.channel == 'stable' }}
       uses: docker://ghcr.io/arifai/flutter:stable
-      run: |
-        export PUB_CACHE=${{ github.workspace }}/.pub-cache \
-        export PATH='$PATH:$PUB_CACHE/bin'
+    
     - name: Install Flutter SDK Beta Channel
       if: ${{ inputs.channel == 'beta' }}
       uses: docker://ghcr.io/arifai/flutter:beta
+    
+    - name: Export PATH to Environment
+      shell: bash
       run: |
         export PUB_CACHE=${{ github.workspace }}/.pub-cache \
         export PATH='$PATH:$PUB_CACHE/bin'
