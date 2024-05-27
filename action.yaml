@@ -13,5 +13,7 @@ outputs:
     description: The selected Flutter SDK channel
 
 runs:
-  using: docker
-  image: docker://ghcr.io/arifai/flutter:${{ inputs.channel }}
+  using: composite
+  steps:
+    - name: 'Set up Flutter SDK'
+      uses: docker://ghcr.io/arifai/flutter:${{ inputs.channel }}

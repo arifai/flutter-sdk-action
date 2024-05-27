@@ -1,10 +1,10 @@
 # Flutter SDK Action
 
+Flutter SDK GitHub Action.
+
 > [!NOTE]
 > 
 > This action currently only supports Android and Linux
-
-Flutter SDK GitHub Action.
 
 ## Use Specific Flutter Shannel
 
