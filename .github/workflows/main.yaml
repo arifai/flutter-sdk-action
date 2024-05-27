@@ -11,9 +11,11 @@ jobs:
     steps:
       - name: Checkout ${{ github.ref }} Branch in ${{ github.repository }} Repository
         uses: actions/checkout@v4
+        
       - id: flutter-sdk-action
         uses: ./
         with:
           channel: beta
-      - name: Output
-        run: flutter doctor -v
+
+      - name: Flutter Version
+        run: flutter --version
