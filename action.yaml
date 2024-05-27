@@ -1,6 +1,10 @@
 name: Flutter SDK Action
 description: Flutter SDK GitHub Action, currently only supports Android and Linux
 author: Ahmad Rifa'i
+branding:
+  icon: smartphone
+  color: blue
+  
 inputs:
   channel:
     description: Flutter SDK channel
@@ -18,6 +22,12 @@ runs:
     - name: Install Flutter SDK Stable Channel
       if: ${{ inputs.channel == 'stable' }}
       uses: docker://ghcr.io/arifai/flutter:stable
+      run: |
+        export PUB_CACHE=${{ github.workspace }}/.pub-cache \
+        export PATH='$PATH:$PUB_CACHE/bin'
     - name: Install Flutter SDK Beta Channel
       if: ${{ inputs.channel == 'beta' }}
       uses: docker://ghcr.io/arifai/flutter:beta
+      run: |
+        export PUB_CACHE=${{ github.workspace }}/.pub-cache \
+        export PATH='$PATH:$PUB_CACHE/bin'
