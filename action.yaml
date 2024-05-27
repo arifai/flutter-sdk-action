@@ -1,17 +1,17 @@
-name: 'Flutter SDK Action'
-description: 'Flutter SDK GitHub Action, currently only supports Android and Linux'
-author: 'Ahmad Rifa'i'
+name: Flutter SDK Action
+description: Flutter SDK GitHub Action, currently only supports Android and Linux
+author: Ahmad Rifa'i
 inputs:
   channel:
-    description: 'Flutter SDK channel'
+    description: Flutter SDK channel
     required: false
     default: stable
   
 outputs:
   channel:
-    value: '${{ steps.flutter-sdk-action.outputs.channel }}'
-    description: 'The selected Flutter SDK channel'
+    value: ${{ steps.flutter-sdk-action.outputs.channel }}
+    description: The selected Flutter SDK channel
 
 runs:
-  using: 'docker'
-  image: 'docker://ghcr.io/arifai/flutter:${{ inputs.channel }}'
+  using: docker
+  image: docker://ghcr.io/arifai/flutter:${{ inputs.channel }}
