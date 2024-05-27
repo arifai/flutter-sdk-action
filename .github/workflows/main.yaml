@@ -1,0 +1,19 @@
+main: 'Main Workflow'
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  test_channel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout ${{ github.ref }} Branch in ${{ github.repository }} Repository
+        uses: actions/checkout@v4
+      - id: flutter-sdk-action
+        uses: ./
+        with:
+          channel: beta
+      - name: Output
+        run: flutter doctor -v
