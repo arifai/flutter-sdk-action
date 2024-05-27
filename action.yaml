@@ -15,5 +15,9 @@ outputs:
 runs:
   using: composite
   steps:
-    - name: 'Set up Flutter SDK'
-      uses: docker://ghcr.io/arifai/flutter:${{ inputs.channel }}
+    - name: Install Flutter SDK Stable Channel
+      if: ${{ inputs.channel == 'stable' }}
+      uses: docker://ghcr.io/arifai/flutter:stable
+    - name: Install Flutter SDK Beta Channel
+      if: ${{ inputs.channel == 'beta' }}
+      uses: docker://ghcr.io/arifai/flutter:beta
