@@ -17,18 +17,12 @@ outputs:
     description: The selected Flutter SDK channel
 
 runs:
-  using: composite
+  using: docker
   steps:
     - name: Install Flutter SDK Stable Channel
       if: ${{ inputs.channel == 'stable' }}
-      uses: docker://ghcr.io/arifai/flutter:stable
+      image: Dockerfile
     
     - name: Install Flutter SDK Beta Channel
       if: ${{ inputs.channel == 'beta' }}
-      uses: docker://ghcr.io/arifai/flutter:beta
-    
-    - name: Export PATH to Environment
-      shell: bash
-      run: |
-        echo '${{ github.workspace }}/.pub-cache/bin' >> $GITHUB_PATH \
-        flutter --version
+      image: Dockerfile.beta
