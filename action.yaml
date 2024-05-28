@@ -27,15 +27,9 @@ runs:
     - name: Install Flutter SDK Stable Channel
       if: ${{ env.CHANNEL == 'stable' }}
       uses: docker://ghcr.io/arifai/flutter:stable
-      with:
-        args: 
-          - --build-arg FLUTTER_DIR=/github/home/.config/flutter
-          - flutter --version
+      env: FLUTTER_DIR=/github/home/.config/flutter
     
     - name: Install Flutter SDK Beta Channel
       if: ${{ env.CHANNEL == 'beta' }}
       uses: docker://ghcr.io/arifai/flutter:beta
-      with:
-        args: 
-          - --build-arg FLUTTER_DIR=/github/home/.config/flutter
-          - flutter --version
+      env: FLUTTER_DIR=/github/home/.config/flutter
