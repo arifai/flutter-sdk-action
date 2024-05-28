@@ -21,6 +21,7 @@ runs:
   steps:
     - name: Set Channel Output to GITHUB_ENV
       id: set_channel
+      shell: bash
       run: echo "CHANNEL=${{ inputs.channel }}" >> $GITHUB_ENV
 
     - name: Install Flutter SDK Stable Channel
