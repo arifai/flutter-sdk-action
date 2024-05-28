@@ -13,16 +13,24 @@ inputs:
   
 outputs:
   channel:
-    value: ${{ steps.flutter-sdk-action.outputs.channel }}
+    value: ${{ steps.set_channel.outputs.channel }}
     description: The selected Flutter SDK channel
 
 runs:
-  using: docker
+  using: composite
   steps:
+    - name: Set Channel Output to GITHUB_ENV
+      id: set_channel
+      run: echo "CHANNEL=${{ inputs.channel }}" >> $GITHUB_ENV
+
     - name: Install Flutter SDK Stable Channel
-      if: ${{ inputs.channel == 'stable' }}
-      image: Dockerfile
+      if: ${{ env.CHANNEL == 'stable' }}
+      uses: docker://ghcr.io/arifai/flutter:stable
+      with:
+        args: flutter --version
     
     - name: Install Flutter SDK Beta Channel
-      if: ${{ inputs.channel == 'beta' }}
-      image: Dockerfile.beta
+      if: ${{ env.CHANNEL == 'beta' }}
+      uses: docker://ghcr.io/arifai/flutter:beta
+      with:
+        args: flutter --version
